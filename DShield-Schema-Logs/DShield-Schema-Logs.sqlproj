@@ -118,10 +118,17 @@
   <ItemGroup>
     <Build Include="1 - Drop Objects and Create Schema.sql" />
     <Build Include="2 - Create Users Accounts Roles.sql" />
-    <Build Include="3 - Create Firewall Logs Storage.sql" />
-    <Build Include="4 - Create Honeypot Logs Storage.sql" />
-    <Build Include="5 - Create RawSSH Logs Storage.sql" />
-    <Build Include="6 - Storage CRUD Procedures.sql" />
-    <Build Include="7 - Storage Observations.sql" />
+    <Build Include="3-1 - Firewall Logs Storage.sql" />
+    <Build Include="4-1 - Honeypot Logs Storage.sql" />
+    <Build Include="5-1 - RawSSH Logs Storage.sql" />
+    <Build Include="3-2 - Firewall Logs Permissions.sql" />
+    <Build Include="4-2 - Honeypot Logs Permissions.sql" />
+    <Build Include="5-2 - RawSSH Logs Permissions.sql" />
+    <Build Include="3-3 - Firewall Logs CRUD.sql" />
+    <Build Include="4-3 - Honeypot Logs CRUD.sql" />
+    <Build Include="5-3 - RawSSH Logs CRUD.sql" />
+    <Build Include="3-4 - Firewall Logs Views.sql" />
+    <Build Include="4-4 - Honeypot Logs Views.sql" />
+    <Build Include="5-4 - RawSSH Logs Views.sql" />
   </ItemGroup>
 </Project>
