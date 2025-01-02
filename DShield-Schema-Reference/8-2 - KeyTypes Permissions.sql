@@ -1,20 +1,6 @@
 USE [DShield]
 GO
--- =============================================
--- Title:       Reference - KeyTypes
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Reference
--- Type:		Schema
--- Description:
---  Table to store Unique SSHClientVersions Observed
---  in the wild (All)
--- =============================================
-CREATE TABLE [Reference].[KeyTypes] (
-	[Id]	INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	[Value]	NVARCHAR(32) NOT NULL UNIQUE
-);
-GO
+
 -- =============================================
 -- Title:       Reference - KeyTypes
 -- Author:		Curtis Dibble
@@ -28,7 +14,7 @@ GO
 --	Grant Delete to Manager with Grant
 --	Grant Update to Manager with Grant
 -- =============================================
-GRANT DELETE, INSERT, REFERENCES, SELECT, UPDATE ON [Reference].[KeyTypes] TO [ReferenceManager];
+GRANT DELETE, INSERT, REFERENCES, SELECT, UPDATE ON [Reference].[KeyTypes] TO [ReferenceManager]
 GO
 -- =============================================
 -- Title:       Reference - KeyTypes
@@ -58,7 +44,7 @@ GO
 --	Deny Delete to Executor
 --	Grant Update to Executor
 -- =============================================
-GRANT REFERENCES, SELECT ON OBJECT::[Reference].[KeyTypes] TO [ReferenceExecutor]; 
+GRANT REFERENCES, SELECT ON OBJECT::[Reference].[KeyTypes] TO [ReferenceExecutor] 
 GO
 
 -- =============================================
@@ -77,3 +63,47 @@ GO
 GRANT REFERENCES, SELECT ON [Reference].[KeyTypes] TO [ReferenceReader]
 GO
 
+-- =============================================
+-- Title:       Reference - KeyTypes
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Reference
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Reference].[UpsertKeyTypes] TO [ReferenceManager]
+GO
+-- =============================================
+-- Title:       Reference - KeyTypes
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Reference
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Reference].[UpsertKeyTypes] TO [ReferenceWriter]
+GO
+-- =============================================
+-- Title:       Reference - KeyTypes
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Reference
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Reference].[UpsertKeyTypes] TO [ReferenceExecutor]
+GO
+-- =============================================
+-- Title:       Reference - KeyTypes
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Reference
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Reference].[UpsertKeyTypes] TO [ReferenceReader]
+GO
