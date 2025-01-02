@@ -1,48 +1,8 @@
 USE [DShield]
 GO
--- =============================================
--- Title:       Cowrie - SessionConnect
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Cowrie
--- Type:		Table
--- Event ID:	cowrie.session.connect
--- Description:
--- SessionConnect
--- Id			- FK INT		- Id				- Logs/Cowrie			- 		
--- 'src_port'	- INT			- SourcePort		-						- 0, GTE 0, LTE 65535, null if not cowrie.session.connect
--- 'dst_ip'		- FK INT		- DestinationAddress- Rolodex/IPAddresses	- NOT NULL
--- 'dst_port'	- INT			- DestinationPort	-						- 0, GTE 0, LTE 65535, null if not cowrie.session.connect
--- 'protocol'	- FK INT		- Protocol			- Reference/Protocols	- NOT NULL
--- =============================================
-CREATE TABLE [Cowrie].[SessionConnect] (
-	[Id]				INT NOT NULL,
-	[SourcePort]		INT NOT NULL,
-	[DestinationPort]	INT NOT NULL,
-	[DestinationID]		BIGINT	NOT NULL,
-	[Protocol]			INT	NOT NULL,
-	CONSTRAINT CK_Cowrie_SessionConnect_SourcePort_Bounds CHECK ([SourcePort] BETWEEN 0 AND 65535),
-	CONSTRAINT CK_Cowrie_SessionConnect_DestinationPort_Bounds CHECK ([DestinationPort] BETWEEN 0 AND 65535),
-	CONSTRAINT FK_Cowrie_SessionConnect_LogId
-		FOREIGN KEY ([Id]) 
-		REFERENCES [Cowrie].[Logs]([Id])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-	CONSTRAINT FK_Cowrie_SessionConnect_DestinationAddress
-		FOREIGN KEY ([DestinationID]) 
-		REFERENCES [IPAddress].[Addresses]([Id])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-	CONSTRAINT FK_Cowrie_SessionConnect_Protocol
-		FOREIGN KEY ([Protocol]) 
-		REFERENCES [Reference].[Protocols]([Number])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
-);
-GO
 
 -- =============================================
--- Title:       Cowrie - SessionConnect
+-- Title:       Cowrie - Session Connect
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Cowrie
@@ -57,7 +17,7 @@ GO
 GRANT DELETE, INSERT, REFERENCES, SELECT, UPDATE ON [Cowrie].[SessionConnect] TO [CowrieManager];
 GO
 -- =============================================
--- Title:       Cowrie - SessionConnect
+-- Title:       Cowrie - Session Connect
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Cowrie
@@ -72,7 +32,7 @@ GO
 GRANT DELETE, INSERT, REFERENCES, SELECT ON [Cowrie].[SessionConnect] TO [CowrieWriter]
 GO
 -- =============================================
--- Title:       Cowrie - SessionConnect
+-- Title:       Cowrie - Session Connect
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Cowrie
@@ -84,11 +44,11 @@ GO
 --	Deny Delete to Executor
 --	Grant Update to Executor
 -- =============================================
-GRANT REFERENCES, SELECT ON OBJECT::[Cowrie].[SessionConnect] TO [CowrieExecutor]; 
+GRANT REFERENCES, SELECT ON [Cowrie].[SessionConnect] TO [CowrieExecutor]; 
 GO
 
 -- =============================================
--- Title:       Cowrie - SessionConnect
+-- Title:       Cowrie - Session Connect
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Cowrie
@@ -101,4 +61,49 @@ GO
 --	Deny Update to Reader
 -- =============================================
 GRANT REFERENCES, SELECT ON [Cowrie].[SessionConnect] TO [CowrieReader]
+GO
+
+-- =============================================
+-- Title:       Cowrie - Logs Session Connect
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertLogsSessionConnect] TO [CowrieManager];
+GO
+-- =============================================
+-- Title:       Cowrie - Logs Session Connect
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertLogsSessionConnect] TO [CowrieWriter]
+GO
+-- =============================================
+-- Title:       Cowrie - Logs Session Connect
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertLogsSessionConnect] TO [CowrieExecutor]
+GO
+-- =============================================
+-- Title:       Cowrie - Logs Session Connect
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertLogsSessionConnect] TO [CowrieReader]
 GO

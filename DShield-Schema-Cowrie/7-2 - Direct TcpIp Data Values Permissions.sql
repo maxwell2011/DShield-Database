@@ -1,19 +1,5 @@
 USE [DShield]
 GO
--- =============================================
--- Title:       Cowrie - Direct Tcp/Ip Data
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Cowrie
--- Type:		Table
--- Description:
---  String representation of a cowrie recorded input
--- =============================================
-CREATE TABLE [Cowrie].[DirectTcpIpDataValues] (
-	[Id]	INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	[Value]	NVARCHAR(MAX) NOT NULL
-);
-GO
 
 -- =============================================
 -- Title:       Cowrie - DirectTcpIpDataValues
@@ -75,4 +61,49 @@ GO
 --	Deny Update to Reader
 -- =============================================
 GRANT REFERENCES, SELECT ON [Cowrie].[DirectTcpIpDataValues] TO [CowrieReader]
+GO
+
+-- =============================================
+-- Title:       Cowrie - Direct TcpIp Data Values
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertDirectTcpIpDataValues] TO [CowrieManager];
+GO
+-- =============================================
+-- Title:       Cowrie - Direct TcpIp Data Values
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertDirectTcpIpDataValues] TO [CowrieWriter]
+GO
+-- =============================================
+-- Title:       Cowrie - Direct TcpIp Data Values
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertDirectTcpIpDataValues] TO [CowrieExecutor]
+GO
+-- =============================================
+-- Title:       Cowrie - Direct TcpIp Data Values
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertDirectTcpIpDataValues] TO [CowrieReader]
 GO

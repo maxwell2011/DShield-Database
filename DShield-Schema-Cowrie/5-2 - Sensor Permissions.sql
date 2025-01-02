@@ -1,20 +1,5 @@
 USE [DShield]
 GO
--- =============================================
--- Title:       Cowrie - Sensors
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Cowrie
--- Type:		Table
--- Description:
---  String representation of a message in a cowrie log
--- =============================================
--- 
-CREATE TABLE [Cowrie].[Sensors] (
-	[Id]	INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	[Value]	NVARCHAR(128) NOT NULL UNIQUE
-);
-GO
 
 -- =============================================
 -- Title:       Cowrie - Sensors
@@ -59,7 +44,7 @@ GO
 --	Deny Delete to Executor
 --	Grant Update to Executor
 -- =============================================
-GRANT REFERENCES, SELECT ON OBJECT::[Cowrie].[Sensors] TO [CowrieExecutor]; 
+GRANT REFERENCES, SELECT ON [Cowrie].[Sensors] TO [CowrieExecutor]; 
 GO
 
 -- =============================================
@@ -76,4 +61,50 @@ GO
 --	Deny Update to Reader
 -- =============================================
 GRANT REFERENCES, SELECT ON [Cowrie].[Sensors] TO [CowrieReader]
+GO
+
+
+-- =============================================
+-- Title:       Cowrie - Sensors
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertSensors] TO [CowrieManager];
+GO
+-- =============================================
+-- Title:       Cowrie - Sensors
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertSensors] TO [CowrieWriter]
+GO
+-- =============================================
+-- Title:       Cowrie - Sensors
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertSensors] TO [CowrieExecutor]
+GO
+-- =============================================
+-- Title:       Cowrie - Sensors
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertSensors] TO [CowrieReader]
 GO

@@ -1,28 +1,6 @@
 USE [DShield]
 GO
--- =============================================
--- Title:       Cowrie - SessionClosed
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Cowrie
--- Type:		Table
--- Event ID:	cowrie.session.closed
--- Description:
--- SessionClosed
--- Id			- FK INT		- Id				- Logs/Cowrie			- 		
--- 'duration'	- DOUBLE(7)		- Duration			-						- NOT NULL
--- =============================================
-CREATE TABLE [Cowrie].[SessionClosed] (
-	[Id]				INT NOT NULL,
-	[Duration]			FLOAT NOT NULL,
-	CONSTRAINT CK_Cowrie_SessionClosed_Duration_Bounds CHECK ([Duration] BETWEEN 0.0 AND 86400.0),
-	CONSTRAINT FK_Cowrie_SessionClosed_LogId
-		FOREIGN KEY ([Id]) 
-		REFERENCES [Cowrie].[Logs]([Id])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
-);
-GO
+
 
 -- =============================================
 -- Title:       Cowrie - SessionClosed
@@ -67,7 +45,7 @@ GO
 --	Deny Delete to Executor
 --	Grant Update to Executor
 -- =============================================
-GRANT REFERENCES, SELECT ON OBJECT::[Cowrie].[SessionClosed] TO [CowrieExecutor]; 
+GRANT REFERENCES, SELECT ON [Cowrie].[SessionClosed] TO [CowrieExecutor]; 
 GO
 
 -- =============================================
@@ -84,4 +62,50 @@ GO
 --	Deny Update to Reader
 -- =============================================
 GRANT REFERENCES, SELECT ON [Cowrie].[SessionClosed] TO [CowrieReader]
+GO
+
+
+-- =============================================
+-- Title:       Cowrie - Logs Session Closed
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertLogsSessionClosed] TO [CowrieManager];
+GO
+-- =============================================
+-- Title:       Cowrie - Logs Session Closed
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertLogsSessionClosed] TO [CowrieWriter]
+GO
+-- =============================================
+-- Title:       Cowrie - Logs Session Closed
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertLogsSessionClosed] TO [CowrieExecutor]
+GO
+-- =============================================
+-- Title:       Cowrie - Logs Session Closed
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertLogsSessionClosed] TO [CowrieReader]
 GO

@@ -1,20 +1,5 @@
 USE [DShield]
 GO
--- =============================================
--- Title:       Cowrie - Messages
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Cowrie
--- Type:		Table
--- Description:
---  String representation of a message in a cowrie log
--- =============================================
--- 
-CREATE TABLE [Cowrie].[Messages] (
-	[Id]	INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	[Value]	NVARCHAR(MAX) NOT NULL
-);
-GO
 
 -- =============================================
 -- Title:       Cowrie - Messages
@@ -76,4 +61,49 @@ GO
 --	Deny Update to Reader
 -- =============================================
 GRANT REFERENCES, SELECT ON [Cowrie].[Messages] TO [CowrieReader]
+GO
+
+-- =============================================
+-- Title:       Cowrie - Messages
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertMessages] TO [CowrieManager];
+GO
+-- =============================================
+-- Title:       Cowrie - Messages
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertMessages] TO [CowrieWriter]
+GO
+-- =============================================
+-- Title:       Cowrie - Messages
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertMessages] TO [CowrieExecutor]
+GO
+-- =============================================
+-- Title:       Cowrie - Messages
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertMessages] TO [CowrieReader]
 GO

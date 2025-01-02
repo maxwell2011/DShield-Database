@@ -1,22 +1,8 @@
 USE [DShield]
 GO
--- =============================================
--- Title:       Cowrie - InputCommands
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Cowrie
--- Type:		Table
--- Description:
---  String representation of a cowrie recorded input
--- =============================================
-CREATE TABLE [Cowrie].[InputCommands] (
-	[Id]	INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	[Value]	NVARCHAR(MAX) NOT NULL
-);
-GO
 
 -- =============================================
--- Title:       Cowrie - InputCommands
+-- Title:       Cowrie - Event Id's
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Cowrie
@@ -28,10 +14,10 @@ GO
 --	Grant Delete to Manager with Grant
 --	Grant Update to Manager with Grant
 -- =============================================
-GRANT DELETE, INSERT, REFERENCES, SELECT, UPDATE ON [Cowrie].[InputCommands] TO [CowrieManager];
+GRANT DELETE, INSERT, REFERENCES, SELECT, UPDATE ON [Cowrie].[EventIds] TO [CowrieManager];
 GO
 -- =============================================
--- Title:       Cowrie - InputCommands
+-- Title:       Cowrie - Event Id's
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Cowrie
@@ -43,10 +29,10 @@ GO
 --	Grant Delete to Writer without Grant
 --	Grant Update to Writer without Grant
 -- =============================================
-GRANT DELETE, INSERT, REFERENCES, SELECT ON [Cowrie].[InputCommands] TO [CowrieWriter]
+GRANT REFERENCES, SELECT ON [Cowrie].[EventIds] TO [CowrieWriter]
 GO
 -- =============================================
--- Title:       Cowrie - InputCommands
+-- Title:       Cowrie - Event Id's
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Cowrie
@@ -58,11 +44,11 @@ GO
 --	Deny Delete to Executor
 --	Grant Update to Executor
 -- =============================================
-GRANT REFERENCES, SELECT ON OBJECT::[Cowrie].[InputCommands] TO [CowrieExecutor]; 
+GRANT REFERENCES, SELECT ON [Cowrie].[EventIds] TO [CowrieExecutor]; 
 GO
 
 -- =============================================
--- Title:       Cowrie - InputCommands
+-- Title:       Cowrie - Event Id's
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Cowrie
@@ -74,5 +60,6 @@ GO
 --	Deny Delete to Reader
 --	Deny Update to Reader
 -- =============================================
-GRANT REFERENCES, SELECT ON [Cowrie].[InputCommands] TO [CowrieReader]
+GRANT REFERENCES, SELECT ON [Cowrie].[EventIds] TO [CowrieReader]
 GO
+

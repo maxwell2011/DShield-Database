@@ -1,32 +1,5 @@
 USE [DShield]
 GO
--- =============================================
--- Title:       Cowrie - ClientVersion
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Cowrie
--- Type:		Table
--- Event ID:	cowrie.client.version
--- Description:
--- ClientVersion
--- Id			- FK INT		- Id				- Logs/Cowrie			- 		
--- 'version'	- FK INT		- Version			- Rolodex/SSHClientV.	- NOT NULL
--- =============================================
-CREATE TABLE [Cowrie].[ClientVersion] (
-	[Id]				INT NOT NULL,
-	[VersionID]			INT NOT NULL,
-	CONSTRAINT FK_Cowrie_ClientVersion_LogId
-		FOREIGN KEY ([Id]) 
-		REFERENCES [Cowrie].[Logs]([Id])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-	CONSTRAINT FK_Cowrie_ClientVersion_Version
-		FOREIGN KEY ([VersionID]) 
-		REFERENCES [Rolodex].[SSHClientVersions]([Id])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
-);
-GO
 
 -- =============================================
 -- Title:       Cowrie - ClientVersion
@@ -71,7 +44,7 @@ GO
 --	Deny Delete to Executor
 --	Grant Update to Executor
 -- =============================================
-GRANT REFERENCES, SELECT ON OBJECT::[Cowrie].[ClientVersion] TO [CowrieExecutor]; 
+GRANT REFERENCES, SELECT ON [Cowrie].[ClientVersion] TO [CowrieExecutor]; 
 GO
 
 -- =============================================
@@ -88,4 +61,49 @@ GO
 --	Deny Update to Reader
 -- =============================================
 GRANT REFERENCES, SELECT ON [Cowrie].[ClientVersion] TO [CowrieReader]
+GO
+
+-- =============================================
+-- Title:       Cowrie - Client Version
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertLogsClientVersion] TO [CowrieManager];
+GO
+-- =============================================
+-- Title:       Cowrie - Client Version
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertLogsClientVersion] TO [CowrieWriter]
+GO
+-- =============================================
+-- Title:       Cowrie - Client Version
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertLogsClientVersion] TO [CowrieExecutor]
+GO
+-- =============================================
+-- Title:       Cowrie - Client Version
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Cowrie
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertLogsClientVersion] TO [CowrieReader]
 GO
