@@ -82,8 +82,9 @@
   <ItemGroup>
     <Build Include="1 - Drop Objects and Create Schema.sql" />
     <Build Include="2 - Create Users Accounts Roles.sql" />
-    <Build Include="3 - Create Storage.sql" />
-    <Build Include="4 - Conversion Functions.sql" />
-    <Build Include="5 - Storage CRUD Procedures.sql" />
+    <Build Include="3-1 - SessionId Storage.sql" />
+    <Build Include="3-5 - SessionId Functions.sql" />
+    <Build Include="3-3 - SessionId CRUD.sql" />
+    <Build Include="3-2 - SessionId Permissions.sql" />
   </ItemGroup>
 </Project>
