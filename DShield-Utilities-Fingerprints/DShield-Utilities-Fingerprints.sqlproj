@@ -82,8 +82,9 @@
   <ItemGroup>
     <Build Include="1 - Drop Objects and Create Schema.sql" />
     <Build Include="2 - Create Users Accounts Roles.sql" />
-    <Build Include="3 - Create Fingerprint Storage.sql" />
-    <Build Include="4 - Fingerprint Conversion Functions.sql" />
-    <Build Include="5 - Storage CRUD Procedures.sql" />
+    <Build Include="3-1 - Fingerprint Storage.sql" />
+    <Build Include="3-4 - Fingerprint Functions.sql" />
+    <Build Include="3-3 - Fingerprint CRUD.sql" />
+    <Build Include="3-2 - Fingerprint Permissions.sql" />
   </ItemGroup>
 </Project>
