@@ -6,21 +6,6 @@ GO
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Rolodex
--- Type:		Schema
--- Description:
---  Table to store Unique SSHClientVersions Observed
---  in the wild (All)
--- =============================================
-CREATE TABLE [Rolodex].[SSHClientVersions] (
-    [Id]            INT IDENTITY(1,1) PRIMARY KEY,
-    [Value]         NVARCHAR(1023) NOT NULL UNIQUE
-);
-GO
--- =============================================
--- Title:       Rolodex - SSH Client Versions
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Rolodex
 -- Type:		Permissions Grant
 -- Description:
 --	Grant Select to Manager with Grant
@@ -29,7 +14,7 @@ GO
 --	Grant Delete to Manager with Grant
 --	Grant Update to Manager with Grant
 -- =============================================
-GRANT DELETE, INSERT, REFERENCES, SELECT, UPDATE ON [Rolodex].[SSHClientVersions] TO [RolodexManager];
+GRANT DELETE, INSERT, REFERENCES, SELECT, UPDATE ON [Rolodex].[SSHClientVersions] TO [RolodexManager]
 GO
 -- =============================================
 -- Title:       Rolodex - SSH Client Versions
@@ -59,7 +44,7 @@ GO
 --	Deny Delete to Executor
 --	Grant Update to Executor
 -- =============================================
-GRANT REFERENCES, SELECT ON OBJECT::[Rolodex].[SSHClientVersions] TO [RolodexExecutor]; 
+GRANT REFERENCES, SELECT ON OBJECT::[Rolodex].[SSHClientVersions] TO [RolodexExecutor] 
 GO
 
 -- =============================================
@@ -78,3 +63,47 @@ GO
 GRANT REFERENCES, SELECT ON [Rolodex].[SSHClientVersions] TO [RolodexReader]
 GO
 
+-- =============================================
+-- Title:       Rolodex - SSHClientVersions
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertSSHClientVersion] TO [RolodexManager];
+GO
+-- =============================================
+-- Title:       Rolodex - SSHClientVersions
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertSSHClientVersion] TO [RolodexWriter]
+GO
+-- =============================================
+-- Title:       Rolodex - SSHClientVersions
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertSSHClientVersion] TO [RolodexExecutor]
+GO
+-- =============================================
+-- Title:       Rolodex - SSHClientVersions
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertSSHClientVersion] TO [RolodexReader]
+GO

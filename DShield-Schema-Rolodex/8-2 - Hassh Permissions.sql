@@ -1,20 +1,6 @@
 USE [DShield]
 GO
--- =============================================
--- Title:       Rolodex - Hassh
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Rolodex
--- Type:		Schema
--- Description:
---  Table to store Unique SSHClientVersions Observed
---  in the wild (All)
--- =============================================
-CREATE TABLE [Rolodex].[Hassh] (
-	[Id]	INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	[Value]	CHAR(32) NOT NULL UNIQUE
-);
-GO
+
 -- =============================================
 -- Title:       Rolodex - Hassh
 -- Author:		Curtis Dibble
@@ -77,3 +63,47 @@ GO
 GRANT REFERENCES, SELECT ON [Rolodex].[Hassh] TO [RolodexReader]
 GO
 
+-- =============================================
+-- Title:       Rolodex - Hasshs
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertHassh] TO [RolodexManager];
+GO
+-- =============================================
+-- Title:       Rolodex - Hasshs
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertHassh] TO [RolodexWriter]
+GO
+-- =============================================
+-- Title:       Rolodex - Hasshs
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertHassh] TO [RolodexExecutor]
+GO
+-- =============================================
+-- Title:       Rolodex - Hasshs
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertHassh] TO [RolodexReader]
+GO

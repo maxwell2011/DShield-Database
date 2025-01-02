@@ -6,21 +6,6 @@ GO
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Rolodex
--- Type:		Schema
--- Description:
---  Table to store Unique Urls Observed
---  in the wild (All)
--- =============================================
-CREATE TABLE [Rolodex].[Urls] (
-    [Id]            INT IDENTITY(1,1) PRIMARY KEY,
-    [Value]         NVARCHAR(2048) NOT NULL
-);
-GO
--- =============================================
--- Title:       Rolodex - Urls
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Rolodex
 -- Type:		Permissions Grant
 -- Description:
 --	Grant Select to Manager with Grant
@@ -78,3 +63,47 @@ GO
 GRANT REFERENCES, SELECT ON [Rolodex].[Urls] TO [RolodexReader]
 GO
 
+-- =============================================
+-- Title:       Rolodex - Urls
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertUrl] TO [RolodexManager];
+GO
+-- =============================================
+-- Title:       Rolodex - Urls
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertUrl] TO [RolodexWriter]
+GO
+-- =============================================
+-- Title:       Rolodex - Urls
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertUrl] TO [RolodexExecutor]
+GO
+-- =============================================
+-- Title:       Rolodex - Urls
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertUrl] TO [RolodexReader]
+GO

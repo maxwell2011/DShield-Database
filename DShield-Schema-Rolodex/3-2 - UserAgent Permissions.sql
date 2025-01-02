@@ -6,23 +6,6 @@ GO
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Rolodex
--- Type:		Schema
--- Description:
---  Table to store unique User Agents (All)
--- =============================================
-CREATE TABLE [Rolodex].[UserAgents] (
-    [Id]            INT IDENTITY(1,1) PRIMARY KEY,
-    [Value]         NVARCHAR(1023) NOT NULL,
-	CONSTRAINT UQ_Rolodex_UserAgents_Agent UNIQUE ([Value])
-);
--- Index on Agent to prevent duplicates
---CREATE INDEX IX_Rolodex_UserAgents_Agent ON [Rolodex].[UserAgents]([Value]);
-GO
--- =============================================
--- Title:       Rolodex - UserAgents
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Rolodex
 -- Type:		Permissions Grant
 -- Description:
 --	Grant Select to Manager with Grant
@@ -31,7 +14,7 @@ GO
 --	Grant Delete to Manager with Grant
 --	Grant Update to Manager with Grant
 -- =============================================
-GRANT DELETE, INSERT, REFERENCES, SELECT, UPDATE ON [Rolodex].[UserAgents] TO [RolodexManager];
+GRANT DELETE, INSERT, REFERENCES, SELECT, UPDATE ON [Rolodex].[UserAgents] TO [RolodexManager]
 GO
 -- =============================================
 -- Title:       Rolodex - UserAgents
@@ -61,7 +44,7 @@ GO
 --	Deny Delete to Executor
 --	Grant Update to Executor
 -- =============================================
-GRANT REFERENCES, SELECT ON OBJECT::[Rolodex].[UserAgents] TO [RolodexExecutor]; 
+GRANT REFERENCES, SELECT ON OBJECT::[Rolodex].[UserAgents] TO [RolodexExecutor] 
 GO
 
 -- =============================================
@@ -81,3 +64,47 @@ GRANT REFERENCES, SELECT ON [Rolodex].[UserAgents] TO [RolodexReader]
 GO
 
 
+-- =============================================
+-- Title:       Rolodex - UserAgents
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertUserAgent] TO [RolodexManager];
+GO
+-- =============================================
+-- Title:       Rolodex - UserAgents
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertUserAgent] TO [RolodexWriter]
+GO
+-- =============================================
+-- Title:       Rolodex - UserAgents
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertUserAgent] TO [RolodexExecutor]
+GO
+-- =============================================
+-- Title:       Rolodex - UserAgents
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertUserAgent] TO [RolodexReader]
+GO

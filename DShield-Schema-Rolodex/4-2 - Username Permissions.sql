@@ -6,24 +6,6 @@ GO
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Rolodex
--- Type:		Schema
--- Description:
---  Table to store unique Usernames observed in the wild
--- =============================================
-CREATE TABLE [Rolodex].[Usernames] (
-    [Id]            INT IDENTITY(1,1) PRIMARY KEY,
-    [Value]         NVARCHAR(255) NOT NULL
-);
-GO
--- Index on Username to prevent duplicates
-CREATE INDEX IX_Rolodex_Usernames_Username ON [Rolodex].[Usernames]([Value]);
-GO
-
--- =============================================
--- Title:       Rolodex - Usernames
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Rolodex
 -- Type:		Permissions Grant
 -- Description:
 --	Grant Select to Manager with Grant
@@ -79,4 +61,49 @@ GO
 --	Deny Update to Reader
 -- =============================================
 GRANT REFERENCES, SELECT ON [Rolodex].[Usernames] TO [RolodexReader]
+GO
+
+-- =============================================
+-- Title:       Rolodex - Usernames
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertUsername] TO [RolodexManager];
+GO
+-- =============================================
+-- Title:       Rolodex - Usernames
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertUsername] TO [RolodexWriter]
+GO
+-- =============================================
+-- Title:       Rolodex - Usernames
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertUsername] TO [RolodexExecutor]
+GO
+-- =============================================
+-- Title:       Rolodex - Usernames
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertUsername] TO [RolodexReader]
 GO

@@ -6,23 +6,6 @@ GO
 -- Author:		Curtis Dibble
 -- Date:		12/14/2024
 -- Schema:		Rolodex
--- Type:		Schema
--- Description:
---  Store Passwords observed in the wild (All)
--- =============================================
-CREATE TABLE [Rolodex].[Passwords] (
-    [Id]            INT IDENTITY(1,1) PRIMARY KEY,
-    [Value]         NVARCHAR(255) NOT NULL
-);
-GO
--- Index on Username to prevent duplicates
-CREATE INDEX IX_Rolodex_Passwords_Password ON [Rolodex].[Passwords]([Value]);
-GO
--- =============================================
--- Title:       Rolodex - Passwords
--- Author:		Curtis Dibble
--- Date:		12/14/2024
--- Schema:		Rolodex
 -- Type:		Permissions Grant
 -- Description:
 --	Grant Select to Manager with Grant
@@ -80,3 +63,47 @@ GO
 GRANT REFERENCES, SELECT ON [Rolodex].[Passwords] TO [RolodexReader]
 GO
 
+-- =============================================
+-- Title:       Rolodex - Passwords
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Manager with Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertPassword] TO [RolodexManager];
+GO
+-- =============================================
+-- Title:       Rolodex - Passwords
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Grant
+-- Description:
+--	Grant Execute to Writer without Grant
+-- =============================================
+GRANT EXECUTE ON OBJECT::[Rolodex].[UpsertPassword] TO [RolodexWriter]
+GO
+-- =============================================
+-- Title:       Rolodex - Passwords
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Executor
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertPassword] TO [RolodexExecutor]
+GO
+-- =============================================
+-- Title:       Rolodex - Passwords
+-- Author:		Curtis Dibble
+-- Date:		12/14/2024
+-- Schema:		Rolodex
+-- Type:		Permissions Denial
+-- Description:
+--	Deny Execute to Reader
+-- =============================================
+DENY EXECUTE ON OBJECT::[Rolodex].[UpsertPassword] TO [RolodexReader]
+GO
