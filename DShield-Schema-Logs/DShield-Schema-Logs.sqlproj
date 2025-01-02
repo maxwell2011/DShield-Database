@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>DShield_Database</Name>
+    <Name>DShield_Schema_Logs</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{75a5677b-48e7-4455-a61a-69dbd8c8579a}</ProjectGuid>
+    <ProjectGuid>{36a37287-5240-42b8-871d-9ee10b327a13}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>DShield_Database</RootNamespace>
-    <AssemblyName>DShield_Database</AssemblyName>
+    <RootNamespace>DShield_Schema_Logs</RootNamespace>
+    <AssemblyName>DShield_Schema_Logs</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -22,7 +22,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <GenerateCreateScript>True</GenerateCreateScript>
+    <DefaultSchema>Logs</DefaultSchema>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -59,6 +59,12 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
+    <SqlCmdVariable Include="Domain">
+      <DefaultValue>EXAMPLE</DefaultValue>
+      <Value>$(SqlCmdVar__1)</Value>
+    </SqlCmdVariable>
+  </ItemGroup>
+  <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">
       <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac</HintPath>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
@@ -66,14 +72,56 @@
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Create DShield Database.sql" />
-    <Build Include="2 - Drop Guest Account.sql" />
-    <Build Include="3 - Create Users Accounts Roles.sql" />
+    <ProjectReference Include="..\DShield-Database\DShield-Database.sqlproj">
+      <Name>DShield-Database</Name>
+      <Project>{75a5677b-48e7-4455-a61a-69dbd8c8579a}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Schema-Reference\DShield-Schema-Reference.sqlproj">
+      <Name>DShield-Schema-Reference</Name>
+      <Project>{2c8b723f-1435-4b0b-95ee-a02838521d88}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Schema-Rolodex\DShield-Schema-Rolodex.sqlproj">
+      <Name>DShield-Schema-Rolodex</Name>
+      <Project>{ba160fce-322a-44f2-b867-b48847166af1}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Utilities-Fingerprints\DShield-Utilities-Fingerprints.sqlproj">
+      <Name>DShield-Utilities-Fingerprints</Name>
+      <Project>{9477e13c-76d4-450e-9127-99fc19e31d09}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Utilities-IPAddress\DShield-Utilities-IPAddress.sqlproj">
+      <Name>DShield-Utilities-IPAddress</Name>
+      <Project>{bcc70075-d453-4282-ab4a-ac93f6728b62}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Utilities-PublicKeys\DShield-Utilities-PublicKeys.sqlproj">
+      <Name>DShield-Utilities-PublicKeys</Name>
+      <Project>{949197f3-04b0-4f63-a6a0-06b958660fc2}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Utilities-SessionIds\DShield-Utilities-SessionIds.sqlproj">
+      <Name>DShield-Utilities-SessionIds</Name>
+      <Project>{c08c1d0f-ccb4-4ae9-937f-9c9c6f204abf}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SqlCmdVariable Include="Domain">
-      <DefaultValue>EXAMPLE</DefaultValue>
-      <Value>$(SqlCmdVar__1)</Value>
-    </SqlCmdVariable>
+    <Build Include="1 - Drop Objects and Create Schema.sql" />
+    <Build Include="2 - Create Users Accounts Roles.sql" />
+    <Build Include="3 - Create Firewall Logs Storage.sql" />
+    <Build Include="4 - Create Honeypot Logs Storage.sql" />
+    <Build Include="5 - Create RawSSH Logs Storage.sql" />
+    <Build Include="6 - Storage CRUD Procedures.sql" />
+    <Build Include="7 - Storage Observations.sql" />
   </ItemGroup>
 </Project>

@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>DShield_Database</Name>
+    <Name>DShield_Schema_Reference</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{75a5677b-48e7-4455-a61a-69dbd8c8579a}</ProjectGuid>
+    <ProjectGuid>{2c8b723f-1435-4b0b-95ee-a02838521d88}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>DShield_Database</RootNamespace>
-    <AssemblyName>DShield_Database</AssemblyName>
+    <RootNamespace>DShield_Schema_Reference</RootNamespace>
+    <AssemblyName>DShield_Schema_Reference</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -22,7 +22,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <GenerateCreateScript>True</GenerateCreateScript>
+    <DefaultSchema>Reference</DefaultSchema>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -59,21 +59,42 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">
-      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac</HintPath>
+    <ProjectReference Include="..\DShield-Database\DShield-Database.sqlproj">
+      <Name>DShield-Database</Name>
+      <Project>{75a5677b-48e7-4455-a61a-69dbd8c8579a}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>True</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Utilities-IPAddress\DShield-Utilities-IPAddress.sqlproj">
+      <Name>DShield-Utilities-IPAddress</Name>
+      <Project>{bcc70075-d453-4282-ab4a-ac93f6728b62}</Project>
+      <Private>True</Private>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
-      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
-    </ArtifactReference>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Create DShield Database.sql" />
-    <Build Include="2 - Drop Guest Account.sql" />
-    <Build Include="3 - Create Users Accounts Roles.sql" />
+    <Build Include="1 - Drop Objects and Create Schema.sql" />
+    <Build Include="3 - Create RFC Lookup.sql" />
+    <Build Include="4 - Create Protocol Lookup.sql" />
+    <Build Include="2 - Create Users Accounts Roles.sql" />
+    <Build Include="5 - Create CloudProvider Lookup.sql" />
+    <Build Include="10 - Storage CRUD Procedures.sql" />
+    <Build Include="6 - Create CloudProviderSubnet Lookup.sql" />
+    <Build Include="9 - Cloud Provider Subnet Views.sql" />
+    <Build Include="7 - Create Architecture Storage.sql" />
+    <Build Include="8 - Create Key Types Storage.sql" />
   </ItemGroup>
   <ItemGroup>
     <SqlCmdVariable Include="Domain">
       <DefaultValue>EXAMPLE</DefaultValue>
       <Value>$(SqlCmdVar__1)</Value>
     </SqlCmdVariable>
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
   </ItemGroup>
 </Project>

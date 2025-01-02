@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>DShield_Database</Name>
+    <Name>DShield_Utilities_SessionIds</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{75a5677b-48e7-4455-a61a-69dbd8c8579a}</ProjectGuid>
+    <ProjectGuid>{c08c1d0f-ccb4-4ae9-937f-9c9c6f204abf}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>DShield_Database</RootNamespace>
-    <AssemblyName>DShield_Database</AssemblyName>
+    <RootNamespace>DShield_Utilities_SessionIds</RootNamespace>
+    <AssemblyName>DShield_Utilities_SessionIds</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -22,7 +22,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <GenerateCreateScript>True</GenerateCreateScript>
+    <DefaultSchema>SessionId</DefaultSchema>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -59,6 +59,12 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
+    <SqlCmdVariable Include="Domain">
+      <DefaultValue>EXAMPLE</DefaultValue>
+      <Value>$(SqlCmdVar__1)</Value>
+    </SqlCmdVariable>
+  </ItemGroup>
+  <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">
       <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac</HintPath>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
@@ -66,14 +72,18 @@
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Create DShield Database.sql" />
-    <Build Include="2 - Drop Guest Account.sql" />
-    <Build Include="3 - Create Users Accounts Roles.sql" />
+    <ProjectReference Include="..\DShield-Database\DShield-Database.sqlproj">
+      <Name>DShield-Database</Name>
+      <Project>{75a5677b-48e7-4455-a61a-69dbd8c8579a}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SqlCmdVariable Include="Domain">
-      <DefaultValue>EXAMPLE</DefaultValue>
-      <Value>$(SqlCmdVar__1)</Value>
-    </SqlCmdVariable>
+    <Build Include="1 - Drop Objects and Create Schema.sql" />
+    <Build Include="2 - Create Users Accounts Roles.sql" />
+    <Build Include="3 - Create Storage.sql" />
+    <Build Include="4 - Conversion Functions.sql" />
+    <Build Include="5 - Storage CRUD Procedures.sql" />
   </ItemGroup>
 </Project>

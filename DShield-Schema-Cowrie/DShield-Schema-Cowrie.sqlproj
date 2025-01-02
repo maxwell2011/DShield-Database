@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>DShield_Database</Name>
+    <Name>DShield_Schema_Cowrie</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{75a5677b-48e7-4455-a61a-69dbd8c8579a}</ProjectGuid>
+    <ProjectGuid>{277952de-31c3-407b-80c2-a0857ca26a82}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>DShield_Database</RootNamespace>
-    <AssemblyName>DShield_Database</AssemblyName>
+    <RootNamespace>DShield_Schema_Cowrie</RootNamespace>
+    <AssemblyName>DShield_Schema_Cowrie</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -22,7 +22,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <GenerateCreateScript>True</GenerateCreateScript>
+    <DefaultSchema>Cowrie</DefaultSchema>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -59,6 +59,12 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
+    <SqlCmdVariable Include="Domain">
+      <DefaultValue>EXAMPLE</DefaultValue>
+      <Value>$(SqlCmdVar__1)</Value>
+    </SqlCmdVariable>
+  </ItemGroup>
+  <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">
       <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac</HintPath>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
@@ -66,14 +72,46 @@
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Create DShield Database.sql" />
-    <Build Include="2 - Drop Guest Account.sql" />
-    <Build Include="3 - Create Users Accounts Roles.sql" />
+    <ProjectReference Include="..\DShield-Database\DShield-Database.sqlproj">
+      <Name>DShield-Database</Name>
+      <Project>{75a5677b-48e7-4455-a61a-69dbd8c8579a}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Utilities-SessionIds\DShield-Utilities-SessionIds.sqlproj">
+      <Name>DShield-Utilities-SessionIds</Name>
+      <Project>{c08c1d0f-ccb4-4ae9-937f-9c9c6f204abf}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Schema-Rolodex\DShield-Schema-Rolodex.sqlproj">
+      <Name>DShield-Schema-Rolodex</Name>
+      <Project>{ba160fce-322a-44f2-b867-b48847166af1}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+    <ProjectReference Include="..\DShield-Schema-Reference\DShield-Schema-Reference.sqlproj">
+      <Name>DShield-Schema-Reference</Name>
+      <Project>{2c8b723f-1435-4b0b-95ee-a02838521d88}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SqlCmdVariable Include="Domain">
-      <DefaultValue>EXAMPLE</DefaultValue>
-      <Value>$(SqlCmdVar__1)</Value>
-    </SqlCmdVariable>
+    <Build Include="1 - Drop Objects and Create Schema.sql" />
+    <Build Include="2 - Create Users Accounts Roles.sql" />
+    <Build Include="3 - Create Event IDs Storage.sql" />
+    <Build Include="4 - Create Message Storage.sql" />
+    <Build Include="n - Storage CRUD Procedures.sql" />
+    <Build Include="5 - Create Sensor Storage.sql" />
+    <Build Include="6 - Create Input Commands Storage.sql" />
+    <Build Include="wip.sql" />
+    <Build Include="7 - Create Direct TcpIp Data Values Storage.sql" />
+    <Build Include="8 - Create Logs Storage.sql" />
+    <Build Include="9 - Create Session Connect Storage.sql" />
+    <Build Include="10 - Create Session Closed Storage.sql" />
+    <Build Include="11 - Create Session Params Storage.sql" />
+    <Build Include="12 - Create Client Version Storage.sql" />
+    <Build Include="13 - Create Client KEX Storage.sql" />
   </ItemGroup>
 </Project>
