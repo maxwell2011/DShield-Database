@@ -71,7 +71,7 @@ GO
 -- Description:
 --	Grant Execute to Manager with Grant
 -- =============================================
-GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertLogsCommandInput] TO [CowrieManager];
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertInputCommands] TO [CowrieManager];
 GO
 -- =============================================
 -- Title:       Cowrie - Input Commands
@@ -82,7 +82,7 @@ GO
 -- Description:
 --	Grant Execute to Writer without Grant
 -- =============================================
-GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertLogsCommandInput] TO [CowrieWriter]
+GRANT EXECUTE ON OBJECT::[Cowrie].[UpsertInputCommands] TO [CowrieWriter]
 GO
 -- =============================================
 -- Title:       Cowrie - Input Commands
@@ -93,7 +93,7 @@ GO
 -- Description:
 --	Deny Execute to Executor
 -- =============================================
-DENY EXECUTE ON OBJECT::[Cowrie].[UpsertLogsCommandInput] TO [CowrieExecutor]
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertInputCommands] TO [CowrieExecutor]
 GO
 -- =============================================
 -- Title:       Cowrie - Input Commands
@@ -104,5 +104,5 @@ GO
 -- Description:
 --	Deny Execute to Reader
 -- =============================================
-DENY EXECUTE ON OBJECT::[Cowrie].[UpsertLogsCommandInput] TO [CowrieReader]
+DENY EXECUTE ON OBJECT::[Cowrie].[UpsertInputCommands] TO [CowrieReader]
 GO

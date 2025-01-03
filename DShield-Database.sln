@@ -21,6 +21,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DShield-Schema-Logs", "DShi
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DShield-Schema-Cowrie", "DShield-Schema-Cowrie\DShield-Schema-Cowrie.sqlproj", "{277952DE-31C3-407B-80C2-A0857CA26A82}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DShield-Services-Grafana", "DShield-Services-Grafana\DShield-Services-Grafana.sqlproj", "{553A1487-25AC-4D3F-9A1A-23A6422F4F7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,12 @@ Global
 		{277952DE-31C3-407B-80C2-A0857CA26A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{277952DE-31C3-407B-80C2-A0857CA26A82}.Release|Any CPU.Build.0 = Release|Any CPU
 		{277952DE-31C3-407B-80C2-A0857CA26A82}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{553A1487-25AC-4D3F-9A1A-23A6422F4F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553A1487-25AC-4D3F-9A1A-23A6422F4F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553A1487-25AC-4D3F-9A1A-23A6422F4F7A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{553A1487-25AC-4D3F-9A1A-23A6422F4F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553A1487-25AC-4D3F-9A1A-23A6422F4F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{553A1487-25AC-4D3F-9A1A-23A6422F4F7A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

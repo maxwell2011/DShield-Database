@@ -13,8 +13,13 @@ GO
 		d.	EXAMPLE can be your domain or your machine name
 	3.	In order (1,2,3...n) execute the scripts in this project
 		a.	Repeat for project DShield-Utilities-IPAddress
-		b.	Repeat for project DShield-Schema-Reference
-		c.	Repeat for project DShield-Schema-Rolodex
+		b.	Repeat for project DShield-Utilities-Fingerprints
+		c.	Repeat for project DShield-Utilities-PublicKeys
+		d.	Repeat for project DShield-Utilities-SessionIds
+		e.	Repeat for project DShield-Schema-Reference
+		f.	Repeat for project DShield-Schema-Rolodex
+		g.	Repeat for project DShield-Schema-Logs
+		h.	Repeat for project DShield-Schema-Cowrie
  */
 /****** Object:  Database [DShield]    Script Date: 12/4/2024 2:50:47 AM ******/
 CREATE DATABASE [DShield]

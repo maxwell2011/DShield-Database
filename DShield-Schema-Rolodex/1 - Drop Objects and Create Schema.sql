@@ -24,7 +24,9 @@ GO
 -- =============================================
 -- Rolodex - Drop Procedures
 -- =============================================
-
+IF OBJECT_ID('[Rolodex].[UpsertSSHClientVersion]', 'P') IS NOT NULL
+    DROP PROCEDURE [Rolodex].[UpsertSSHClientVersion]
+GO
 IF OBJECT_ID('[Rolodex].[UpsertUrl]', 'P') IS NOT NULL
     DROP PROCEDURE [Rolodex].[UpsertUrl]
 GO
@@ -37,15 +39,15 @@ GO
 IF OBJECT_ID('[Rolodex].[UpsertUserAgent]', 'P') IS NOT NULL
     DROP PROCEDURE [Rolodex].[UpsertUserAgent]
 GO
-IF OBJECT_ID('[Rolodex].[UpsertSSHClientVersion]', 'P') IS NOT NULL
-    DROP PROCEDURE [Rolodex].[UpsertSSHClientVersion]
-GO
 IF OBJECT_ID('[Rolodex].[UpsertHassh]', 'P') IS NOT NULL
     DROP PROCEDURE [Rolodex].[UpsertHassh]
 GO
 -- =============================================
 -- Rolodex - Drop Tables
 -- =============================================
+IF OBJECT_ID('[Rolodex].[SSHClientVersions]', 'U') IS NOT NULL
+    DROP TABLE [Rolodex].[SSHClientVersions]
+GO
 IF OBJECT_ID('[Rolodex].[Urls]', 'U') IS NOT NULL
     DROP TABLE [Rolodex].[Urls]
 GO

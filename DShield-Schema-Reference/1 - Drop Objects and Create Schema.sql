@@ -7,9 +7,18 @@ GO
 --  source of a lot of FK constraints
 -- =============================================
 -- =============================================
+-- Reference - Drop Views
+-- =============================================
+IF OBJECT_ID('[Reference].[CloudProviderSubnetOwnership]', 'V') IS NOT NULL
+    DROP VIEW [Reference].[CloudProviderSubnetOwnership]
+GO
+-- =============================================
 -- Reference - Drop Procedures
 -- =============================================
-IF OBJECT_ID('[Reference].[UpsertCloudProviderSubnets]', 'P') IS NOT NULL
+IF OBJECT_ID('[Reference].[UpsertKeyTypes]', 'P') IS NOT NULL
+    DROP PROCEDURE [Reference].[UpsertKeyTypes]
+GO
+IF OBJECT_ID('[Reference].[UpsertCloudProviderSubnet]', 'P') IS NOT NULL
     DROP PROCEDURE [Reference].[UpsertCloudProviderSubnet]
 GO
 IF OBJECT_ID('[Reference].[UpsertCloudProvider]', 'P') IS NOT NULL

@@ -26,21 +26,7 @@ GO
 IF OBJECT_ID('[IPAddress].[IPv6AsString]', 'V') IS NOT NULL
     DROP VIEW [IPAddress].[IPv6AsString]
 GO
--- =============================================
--- IPAddress - Drop Functions
--- =============================================
-IF OBJECT_ID('[IPAddress].[FromBinary]', 'FN') IS NOT NULL
-    DROP FUNCTION [IPAddress].[FromBinary]
-GO
-IF OBJECT_ID('[IPAddress].[ToBinary]', 'FN') IS NOT NULL
-    DROP FUNCTION [IPAddress].[ToBinary]
-GO
-IF OBJECT_ID('[IPAddress].[ToBigInt]', 'FN') IS NOT NULL
-    DROP FUNCTION [IPAddress].[ToBigInt]
-GO
-IF OBJECT_ID('[IPAddress].[IsIpInSubnet]', 'FN') IS NOT NULL
-    DROP FUNCTION [IPAddress].[IsIpInSubnet]
-GO
+
 -- =============================================
 -- IPAddress - Drop Procedures
 -- =============================================
@@ -71,6 +57,23 @@ GO
 IF OBJECT_ID('[IPAddress].[ApplyRolePermissionsToSynonym]', 'P') IS NOT NULL
     DROP PROCEDURE [IPAddress].[ApplyRolePermissionsToSynonym]
 GO
+
+-- =============================================
+-- IPAddress - Drop Functions
+-- =============================================
+IF OBJECT_ID('[IPAddress].[FromBinary]', 'FN') IS NOT NULL
+    DROP FUNCTION [IPAddress].[FromBinary]
+GO
+IF OBJECT_ID('[IPAddress].[ToBinary]', 'FN') IS NOT NULL
+    DROP FUNCTION [IPAddress].[ToBinary]
+GO
+IF OBJECT_ID('[IPAddress].[ToBigInt]', 'FN') IS NOT NULL
+    DROP FUNCTION [IPAddress].[ToBigInt]
+GO
+IF OBJECT_ID('[IPAddress].[IsIpInSubnet]', 'FN') IS NOT NULL
+    DROP FUNCTION [IPAddress].[IsIpInSubnet]
+GO
+
 -- =============================================
 -- IPAddress - Drop Tables
 -- =============================================
