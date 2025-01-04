@@ -96,5 +96,6 @@
     <Build Include="3 - Permissions Roles.sql" />
     <Build Include="2 - Drop Objects and Create Utility.sql" />
     <Build Include="2 - Drop Objects and Create Permissions.sql" />
+    <Build Include="6-5 - Permissions Functions.sql" />
   </ItemGroup>
 </Project>

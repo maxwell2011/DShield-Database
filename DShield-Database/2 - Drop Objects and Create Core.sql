@@ -15,6 +15,8 @@ GO
 CREATE SCHEMA [Core]
 GO
 
+
+
 -- =============================================
 -- Title:       Login - Create
 -- Author:		Curtis Dibble
