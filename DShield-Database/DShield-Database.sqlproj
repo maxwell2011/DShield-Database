@@ -23,6 +23,7 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <GenerateCreateScript>True</GenerateCreateScript>
+    <DefaultSchema>Core</DefaultSchema>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -46,6 +47,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DShield_Database.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -66,14 +68,33 @@
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Create DShield Database.sql" />
-    <Build Include="2 - Drop Guest Account.sql" />
-    <Build Include="3 - Create Users Accounts Roles.sql" />
+    <None Include="1 - Create DShield Database.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="4-3 - Drop Guest Account.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="3 - Core Roles.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <SqlCmdVariable Include="Domain">
       <DefaultValue>EXAMPLE</DefaultValue>
       <Value>$(SqlCmdVar__1)</Value>
     </SqlCmdVariable>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="4-3 - Users Generate Transfer Procedures.sql" />
+    <Build Include="4-4 - Users Views.sql" />
+    <Build Include="2 - Drop Objects and Create Core.sql" />
+    <Build Include="5-4 - Tracing Views.sql" />
+    <Build Include="3 - Utility Roles.sql" />
+    <Build Include="3 - Permissions Roles.sql" />
+    <Build Include="2 - Drop Objects and Create Utility.sql" />
+    <Build Include="2 - Drop Objects and Create Permissions.sql" />
   </ItemGroup>
 </Project>
