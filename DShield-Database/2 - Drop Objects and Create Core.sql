@@ -7,10 +7,7 @@ GO
 --  destination of many FK constraints
 -- =============================================
 
--- =============================================
--- Permissions Schema
---  Database permissions management utilities
--- =============================================
+
 IF EXISTS (SELECT * FROM sys.schemas WHERE name = N'Core')
     DROP SCHEMA [Core]
 GO
