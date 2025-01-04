@@ -1,10 +1,40 @@
+USE [DShield]
+GO
+-- =============================================
+-- DShield Database Audit
+--  Drops the Database audit objects
+-- =============================================
+IF EXISTS (SELECT name FROM [sys].[database_audit_specifications] WHERE name = N'DShield_Essential_Database_Audit_Specification')
+    ALTER DATABASE AUDIT SPECIFICATION DShield_Essential_Database_Audit_Specification
+    WITH (STATE = OFF);
+GO
+IF EXISTS (SELECT name FROM [sys].[database_audit_specifications] WHERE name = N'DShield_Essential_Database_Audit_Specification')
+    DROP DATABASE AUDIT SPECIFICATION DShield_Essential_Database_Audit_Specification;  
+GO  
+
+
 USE [master]
 GO
 -- =============================================
 -- DShield Database Server Audit
---  Creates the base server audit objects
+--  Drops the base server audit objects
 -- =============================================
+IF EXISTS (SELECT name FROM [sys].[server_audit_specifications] WHERE name = N'DShield_Essential_Server_Audit_Specification')
+    ALTER SERVER AUDIT SPECIFICATION DShield_Essential_Server_Audit_Specification
+    WITH (STATE = OFF);
+GO
+IF EXISTS (SELECT name FROM [sys].[server_audit_specifications] WHERE name = N'DShield_Essential_Server_Audit_Specification')
+    DROP SERVER AUDIT SPECIFICATION DShield_Essential_Server_Audit_Specification;  
+GO  
 
+
+IF EXISTS (SELECT name FROM [sys].[server_audits] WHERE name = N'DShield_Essential_Server_Audit')
+    ALTER SERVER AUDIT DShield_Essential_Server_Audit
+    WITH (STATE = OFF);
+GO
+IF EXISTS (SELECT name FROM [sys].[server_audits] WHERE name = N'DShield_Essential_Server_Audit')
+    DROP SERVER AUDIT DShield_Essential_Server_Audit;
+GO
 -- =============================================
 -- Title:       Audit - Create
 -- Author:		Curtis Dibble
@@ -30,11 +60,11 @@ GO
 --  audit logs elsewhere
 --  https://learn.microsoft.com/en-us/sql/t-sql/statements/create-server-audit-transact-sql?view=sql-server-ver16
 -- ============================================= 
-CREATE SERVER AUDIT DShield_Server_Audit
+CREATE SERVER AUDIT DShield_Essential_Server_Audit
     TO FILE (
         -- The path of the audit log. 
         -- The file name is generated based on the audit name and audit GUID
-        FILEPATH = 'C:\DShield Database Audits\',
+        FILEPATH = 'C:\DShield Database Audits\',   -- make sure this path exists!
         -- Specifies the maximum size to which the audit file can grow. 
         -- The max_size value must be an integer followed by MB, GB, TB, 
         -- or UNLIMITED. 
@@ -44,7 +74,7 @@ CREATE SERVER AUDIT DShield_Server_Audit
         -- (0 also indicates UNLIMITED.) Specifying a value lower than 2 MB 
         -- raises the error MSG_MAXSIZE_TOO_SMALL. 
         -- The default value is UNLIMITED.
-        MAXSIZE = 5 GB,
+        MAXSIZE = 16 MB,
         -- Specifies the maximum number of files to retain in the file 
         -- system in addition to the current file. 
         -- The MAX_ROLLOVER_FILES value must be an integer or UNLIMITED. 
@@ -52,7 +82,7 @@ CREATE SERVER AUDIT DShield_Server_Audit
         -- whenever the audit restarts (which can happen when the instance 
         -- of the Database Engine restarts or when the audit is turned off 
         -- and then on again) or when a new file is needed because the MAXSIZE is reached.
-        MAX_ROLLOVER_FILES = 1000,
+        MAX_ROLLOVER_FILES = 128,
         -- This option preallocates the file on the disk to the MAXSIZE value. 
         -- It applies only if MAXSIZE isn't equal to UNLIMITED. The default value is OFF.
         RESERVE_DISK_SPACE = ON
@@ -82,7 +112,7 @@ GO
 -- Description:
 --	Enable the Server Audit
 -- ============================================= 
-ALTER SERVER AUDIT DShield_Server_Audit WITH (STATE = ON);
+ALTER SERVER AUDIT DShield_Essential_Server_Audit WITH (STATE = ON);
 GO
 
 -- =============================================
@@ -103,13 +133,13 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE SERVER AUDIT SPECIFICATION Failed_Login_Server_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+CREATE SERVER AUDIT SPECIFICATION DShield_Essential_Server_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (FAILED_LOGIN_GROUP)  
-    WITH (STATE=ON);  
+    WITH (STATE=OFF);  
 GO  
 -- =============================================
--- Title:       Audit Specification - Create
+-- Title:       Audit Specification - Modify
 -- Author:		Curtis Dibble
 -- Date:		1/4/2025
 -- Schema:		
@@ -124,13 +154,13 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE SERVER AUDIT SPECIFICATION App_Role_Password_Change_Server_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER SERVER AUDIT SPECIFICATION DShield_Essential_Server_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP)  
-    WITH (STATE=ON);   
+    WITH (STATE=OFF);   
 GO  
 -- =============================================
--- Title:       Audit Specification - Create
+-- Title:       Audit Specification - Modify
 -- Author:		Curtis Dibble
 -- Date:		1/4/2025
 -- Schema:		
@@ -151,13 +181,13 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE SERVER AUDIT SPECIFICATION Permissions_Change_Server_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER SERVER AUDIT SPECIFICATION DShield_Essential_Server_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (DATABASE_PERMISSION_CHANGE_GROUP)  
-    WITH (STATE=ON);  
+    WITH (STATE=OFF);  
 GO  
 -- =============================================
--- Title:       Audit Specification - Create
+-- Title:       Audit Specification - Modify
 -- Author:		Curtis Dibble
 -- Date:		1/4/2025
 -- Schema:		
@@ -184,13 +214,13 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE SERVER AUDIT SPECIFICATION Principal_Change_Server_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER SERVER AUDIT SPECIFICATION DShield_Essential_Server_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (DATABASE_PRINCIPAL_CHANGE_GROUP)  
-    WITH (STATE=ON);  
+    WITH (STATE=OFF);  
 GO  
 -- =============================================
--- Title:       Audit Specification - Create
+-- Title:       Audit Specification - Modify
 -- Author:		Curtis Dibble
 -- Date:		1/4/2025
 -- Schema:		
@@ -209,13 +239,13 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE SERVER AUDIT SPECIFICATION Role_Membership_Server_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER SERVER AUDIT SPECIFICATION DShield_Essential_Server_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP)  
-    WITH (STATE=ON);  
+    WITH (STATE=OFF);  
 GO  
 -- =============================================
--- Title:       Audit Specification - Create
+-- Title:       Audit Specification - Modify
 -- Author:		Curtis Dibble
 -- Date:		1/4/2025
 -- Schema:		
@@ -243,13 +273,13 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE SERVER AUDIT SPECIFICATION Server_Principal_Server_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER SERVER AUDIT SPECIFICATION DShield_Essential_Server_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (SERVER_PRINCIPAL_CHANGE_GROUP)  
-    WITH (STATE=ON);  
+    WITH (STATE=OFF);  
 GO  
 -- =============================================
--- Title:       Audit Specification - Create
+-- Title:       Audit Specification - Modify
 -- Author:		Curtis Dibble
 -- Date:		1/4/2025
 -- Schema:		
@@ -263,8 +293,8 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE SERVER AUDIT SPECIFICATION New_User_Server_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER SERVER AUDIT SPECIFICATION DShield_Essential_Server_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (USER_DEFINED_AUDIT_GROUP)  
     WITH (STATE=ON);  
 GO  
@@ -278,7 +308,7 @@ GO
 -- Author:		Curtis Dibble
 -- Date:		1/4/2025
 -- Schema:		
--- Type:		Server
+-- Type:		Database
 -- Description:
 --	Create and record audit logs for application
 --  role password changes at the server level
@@ -289,10 +319,10 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE DATABASE AUDIT SPECIFICATION App_Role_Password_Change_Database_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+CREATE DATABASE AUDIT SPECIFICATION DShield_Essential_Database_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP)  
-    WITH (STATE=ON);   
+    WITH (STATE=OFF);   
 GO  
 -- =============================================
 -- Title:       Audit Specification - Create
@@ -316,10 +346,10 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE DATABASE AUDIT SPECIFICATION Permissions_Change_Database_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER DATABASE AUDIT SPECIFICATION DShield_Essential_Database_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (DATABASE_PERMISSION_CHANGE_GROUP)  
-    WITH (STATE=ON);  
+    WITH (STATE=OFF);  
 GO  
 -- =============================================
 -- Title:       Audit Specification - Create
@@ -349,10 +379,10 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE DATABASE AUDIT SPECIFICATION Principal_Change_Database_Audit_Specification   
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER DATABASE AUDIT SPECIFICATION DShield_Essential_Database_Audit_Specification   
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (DATABASE_PRINCIPAL_CHANGE_GROUP)  
-    WITH (STATE=ON);  
+    WITH (STATE=OFF);  
 GO  
 -- =============================================
 -- Title:       Audit Specification - Create
@@ -374,10 +404,10 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE DATABASE AUDIT SPECIFICATION Role_Membership_Database_Audit_Specification  
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER DATABASE AUDIT SPECIFICATION DShield_Essential_Database_Audit_Specification  
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP)  
-    WITH (STATE=ON);  
+    WITH (STATE=OFF);  
 GO  
 -- =============================================
 -- Title:       Audit Specification - Create
@@ -408,10 +438,10 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE DATABASE AUDIT SPECIFICATION Server_Principal_Database_Audit_Specification 
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER DATABASE AUDIT SPECIFICATION DShield_Essential_Database_Audit_Specification 
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (DATABASE_PRINCIPAL_CHANGE_GROUP)  
-    WITH (STATE=ON);  
+    WITH (STATE=OFF);  
 GO  
 -- =============================================
 -- Title:       Audit Specification - Create
@@ -428,8 +458,8 @@ GO
 -- Source:
 --  https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-action-groups-and-actions?view=sql-server-ver16
 -- ============================================= 
-CREATE DATABASE AUDIT SPECIFICATION New_User_Database_Audit_Specification 
-FOR SERVER AUDIT DShield_Server_Audit  
+ALTER DATABASE AUDIT SPECIFICATION DShield_Essential_Database_Audit_Specification 
+FOR SERVER AUDIT DShield_Essential_Server_Audit  
     ADD (USER_DEFINED_AUDIT_GROUP)  
     WITH (STATE=ON);  
 GO  
