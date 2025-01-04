@@ -80,12 +80,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Drop Objects and Create Schema.sql" />
-    <Build Include="2 - Create Users Accounts Roles.sql" />
+    <None Include="1 - Drop Objects and Create Schema.sql" />
+    <None Include="2 - Create Users Accounts Roles.sql" />
     <Build Include="3-1 - SessionId Storage.sql" />
-    <Build Include="3-5 - SessionId Functions.sql" />
-    <Build Include="3-3 - SessionId CRUD.sql" />
-    <Build Include="3-2 - SessionId Permissions.sql" />
-    <Build Include="3-7 - SessionId Audits.sql" />
+    <None Include="3-5 - SessionId Functions.sql" />
+    <None Include="3-3 - SessionId CRUD.sql" />
+    <None Include="3-2 - SessionId Permissions.sql" />
+    <None Include="3-7 - SessionId Audits.sql" />
   </ItemGroup>
 </Project>

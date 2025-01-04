@@ -16,8 +16,8 @@ CREATE TABLE [PublicKey].[Storage] (
 );
 GO
 -- Index on PublicKey to prevent duplicates
-CREATE INDEX IX_PublicKey_Storage_Value ON [PublicKey].[Storage]([Value]);
-GO
+--CREATE INDEX IX_PublicKey_Storage_Value ON [PublicKey].[Storage]([Value]);
+--GO
 
 
 

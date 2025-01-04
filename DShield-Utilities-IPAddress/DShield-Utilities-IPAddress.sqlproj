@@ -71,22 +71,22 @@
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Drop Objects and Create Schema.sql" />
-    <Build Include="2 - Create Users Accounts Roles.sql" />
+    <None Include="1 - Drop Objects and Create Schema.sql" />
+    <None Include="2 - Create Users Accounts Roles.sql" />
     <Build Include="3-1 - IPAddress Storage.sql" />
     <Build Include="6-1 - Bogons Storage.sql" />
     <Build Include="5-1 - Subnets Storage.sql" />
     <Build Include="4-1 - Address Storage.sql" />
-    <Build Include="3-2 - IPAddress Permissions.sql" />
-    <Build Include="4-2 - Address Permissions.sql" />
-    <Build Include="5-2 - Subnets Permissions.sql" />
-    <Build Include="5-6 - Subnets Preload.sql" />
-    <Build Include="6-2 - Bogons Permissions.sql" />
-    <Build Include="3-3 - IPAddress CRUD.sql" />
-    <Build Include="5-5 - Subnets Functions.sql" />
-    <Build Include="3-5 - IPAddress Functions.sql" />
-    <Build Include="3-4 - IPAddress Views.sql" />
-    <Build Include="3-7 - IPAddress Audits.sql" />
+    <None Include="3-2 - IPAddress Permissions.sql" />
+    <None Include="4-2 - Address Permissions.sql" />
+    <None Include="5-2 - Subnets Permissions.sql" />
+    <None Include="5-6 - Subnets Preload.sql" />
+    <None Include="6-2 - Bogons Permissions.sql" />
+    <None Include="3-3 - IPAddress CRUD.sql" />
+    <None Include="5-5 - Subnets Functions.sql" />
+    <None Include="3-5 - IPAddress Functions.sql" />
+    <None Include="3-4 - IPAddress Views.sql" />
+    <None Include="3-7 - IPAddress Audits.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DShield-Database\DShield-Database.sqlproj">

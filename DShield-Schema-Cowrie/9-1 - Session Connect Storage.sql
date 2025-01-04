@@ -19,7 +19,7 @@ CREATE TABLE [Cowrie].[SessionConnect] (
 	[Id]				INT NOT NULL,
 	[SourcePort]		INT NOT NULL,
 	[DestinationPort]	INT NOT NULL,
-	[DestinationID]		BIGINT	NOT NULL,
+	[DestinationID]		INT	NOT NULL,
 	[Protocol]			INT	NOT NULL,
 	CONSTRAINT CK_Cowrie_SessionConnect_SourcePort_Bounds CHECK ([SourcePort] BETWEEN 0 AND 65535),
 	CONSTRAINT CK_Cowrie_SessionConnect_DestinationPort_Bounds CHECK ([DestinationPort] BETWEEN 0 AND 65535),

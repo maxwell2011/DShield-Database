@@ -21,7 +21,7 @@ CREATE TABLE [Cowrie].[Logs] (
 	[Id]			INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	[LogTimestamp]	DATETIME2 NOT NULL,
 	[EventIdID]		INT NOT NULL,
-	[SourceID]		BIGINT	NOT NULL,
+	[SourceID]		INT	NOT NULL,
 	[SessionID]		INT NOT NULL,
 	[MessageID]		INT NOT NULL,
 	[SensorID]		INT NOT NULL,

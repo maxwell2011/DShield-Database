@@ -14,7 +14,7 @@ GO
 
 
 CREATE TABLE [IPAddress].[Storage] (
-    [Id]            BIGINT IDENTITY(1,1) PRIMARY KEY,
+    [Id]			INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [Value]         VARBINARY(16) NOT NULL
 );
 GO

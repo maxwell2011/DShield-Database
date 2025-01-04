@@ -74,7 +74,7 @@ SELECT
 	[IpAddress].[FromBinary](u.[Value]) AS [IPAddress],
 	COUNT(*) AS [Occurrences]
 FROM [Logs].[Honeypot] h
-JOIN [Rolodex].[IPAddresses] u ON h.[SourceID] = u.[Id]
+JOIN [IPAddress].[Addresses] u ON h.[SourceID] = u.[Id]
 GROUP BY u.[Value]
 HAVING COUNT(*) >= 1
 GO

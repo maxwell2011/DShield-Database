@@ -11,26 +11,14 @@ GO
 --	Table to store Subnet addresses and associated
 --  Netmask values (in CIDR notation)
 -- =============================================
-
-
 CREATE TABLE [IPAddress].[Subnets] (
-    [Id]            BIGINT NOT NULL,
+    [Id]			INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [Value]         VARBINARY(16) NOT NULL,
     [CIDR]          TINYINT NOT NULL CHECK ([CIDR] <= 96),
     [Netmask]       VARBINARY(16) NOT NULL,
     [Bogon]         BIT NOT NULL DEFAULT 0,
     [Comment]       VARCHAR(128) NULL,
     CONSTRAINT UQ_IPAddress_Subnets_Address_CIDR_Netmask UNIQUE CLUSTERED ([Value], [CIDR], [Netmask]),
-    CONSTRAINT FK_IPAddress_Subnets_Storage_Id
-		FOREIGN KEY ([Id]) 
-		REFERENCES [IPAddress].[Storage]([Id])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-    CONSTRAINT FK_IPAddress_Subnets_Storage_Value
-		FOREIGN KEY ([Value]) 
-		REFERENCES [IPAddress].[Storage]([Value])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
 );
 GO
 

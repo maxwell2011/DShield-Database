@@ -26,7 +26,7 @@ AS BEGIN
         CAST(@Date AS binary(3)) 
         AS DATETIME2(7)
     );
-    EXEC [IPAddresses].[UpsertIP] @Source, @SourceID OUTPUT;
+    EXEC [IPAddress].[UpsertIP] @Source, @SourceID OUTPUT;
     EXEC [Rolodex].[UpsertUsername] @Username, @UsernameID OUTPUT;
     EXEC [Rolodex].[UpsertPassword] @Password, @PasswordID OUTPUT;
     INSERT INTO [Logs].[RawSSH] (

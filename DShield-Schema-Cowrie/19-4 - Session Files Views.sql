@@ -15,18 +15,17 @@ SELECT
 	   sf.[Id]
 	  ,l.[LogTimestamp]
 	  ,e.[Value] AS [Event ID]
-	  ,[Rolodex].[IPToString](i.[Value]) AS [Source Address]
-	  ,[Logs].[BinaryToSessionId](s.[Value]) AS [Session ID]
+	  ,[IPAddress].[FromBinary](i.[Value]) AS [Source Address]
+	  ,[SessionId].[FromBinary](s.[Value]) AS [Session ID]
 	  ,m.[Value] AS [Message]
-      ,ic.[Value] AS [Command]
 	  ,sf.[Filename] AS [Destination File]
 	  ,sf.[Outfile] AS [Output File]
 	  ,sf.[ShaSum] AS [SHA 256 Sum]
-  FROM [sans_isc].[Cowrie].[SessionFiles] sf
+  FROM [Cowrie].[SessionFiles] sf
   JOIN [Cowrie].[Logs] l ON l.[Id] = sf.[Id]
   JOIN [Cowrie].[EventIds] e ON e.[Id] = l.[EventIdID]
   JOIN [IPAddress].[Addresses] i ON i.[Id] = l.[SourceID]
-  JOIN [Cowrie].[Sessions] s ON s.[Id] = l.[SessionID]
+  JOIN [SessionId].[Storage] s ON s.[Id] = l.[SessionID]
   JOIN [Cowrie].[Messages] m ON m.[Id] = l.[MessageID]
   WHERE e.[Value] = 'cowrie.session.file_upload'
 GO
@@ -47,19 +46,18 @@ SELECT
 	   sf.[Id]
 	  ,l.[LogTimestamp]
 	  ,e.[Value] AS [Event ID]
-	  ,[Rolodex].[IPToString](i.[Value]) AS [Source Address]
-	  ,[Logs].[BinaryToSessionId](s.[Value]) AS [Session ID]
+	  ,[IPAddress].[FromBinary](i.[Value]) AS [Source Address]
+	  ,[SessionId].[FromBinary](s.[Value]) AS [Session ID]
 	  ,m.[Value] AS [Message]
-      ,ic.[Value] AS [Command]
 	  ,sf.[Filename] AS [Destination File]
 	  ,sf.[Outfile] AS [Output File]
 	  ,sf.[ShaSum] AS [SHA 256 Sum]
 	  ,sf.[Duplicate]
-  FROM [sans_isc].[Cowrie].[SessionFiles] sf
+  FROM [Cowrie].[SessionFiles] sf
   JOIN [Cowrie].[Logs] l ON l.[Id] = sf.[Id]
   JOIN [Cowrie].[EventIds] e ON e.[Id] = l.[EventIdID]
   JOIN [IPAddress].[Addresses] i ON i.[Id] = l.[SourceID]
-  JOIN [Cowrie].[Sessions] s ON s.[Id] = l.[SessionID]
+  JOIN [SessionId].[Storage] s ON s.[Id] = l.[SessionID]
   JOIN [Cowrie].[Messages] m ON m.[Id] = l.[MessageID]
   WHERE e.[Value] = 'cowrie.session.file_download'
 GO

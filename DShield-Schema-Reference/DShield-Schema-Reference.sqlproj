@@ -73,34 +73,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Drop Objects and Create Schema.sql" />
+    <None Include="1 - Drop Objects and Create Schema.sql" />
     <Build Include="3-1 - RFC Storage.sql" />
     <Build Include="4-1 - Protocol Storage.sql" />
-    <Build Include="2 - Create Users Accounts Roles.sql" />
+    <None Include="2 - Create Users Accounts Roles.sql" />
     <Build Include="5-1 - CloudProvider Storage.sql" />
     <Build Include="6-1 - CloudProviderSubnet Storage.sql" />
-    <Build Include="6-4 - CloudProviderSubnet Views.sql" />
+    <None Include="6-4 - CloudProviderSubnet Views.sql" />
     <Build Include="7-1 - Architecture Storage.sql" />
     <Build Include="8-1 - KeyTypes Storage.sql" />
-    <Build Include="3-6 - RFC Preload.sql" />
-    <Build Include="3-2 - RFC Permissions.sql" />
-    <Build Include="4-2 - Protocol Permissions.sql" />
-    <Build Include="4-6 - Protocol Preload.sql" />
-    <Build Include="5-2 - CloudProvider Permissions.sql" />
-    <Build Include="5-6 - CloudProvider Preload.sql" />
-    <Build Include="6-2 - CloudProviderSubnet Permissions.sql" />
-    <Build Include="7-2 - Architecture Permissions.sql" />
-    <Build Include="8-2 - KeyTypes Permissions.sql" />
-    <Build Include="5-3 - CloudProvider CRUD.sql" />
-    <Build Include="6-3 - CloudProviderSubnet CRUD.sql" />
-    <Build Include="7-3 - Architecture CRUD.sql" />
-    <Build Include="8-3 - KeyTypes CRUD.sql" />
-    <Build Include="3-7 - RFC Audits.sql" />
-    <Build Include="4-7 - Protocol Audits.sql" />
-    <Build Include="5-7 - CloudProvider Audits.sql" />
-    <Build Include="6-7 - CloudProviderSubnet Audits.sql" />
-    <Build Include="7-7 - Architecture Audits.sql" />
-    <Build Include="8-7 - KeyTypes Audits.sql" />
+    <None Include="3-6 - RFC Preload.sql" />
+    <None Include="3-2 - RFC Permissions.sql" />
+    <None Include="4-2 - Protocol Permissions.sql" />
+    <None Include="4-6 - Protocol Preload.sql" />
+    <None Include="5-2 - CloudProvider Permissions.sql" />
+    <None Include="5-6 - CloudProvider Preload.sql" />
+    <None Include="6-2 - CloudProviderSubnet Permissions.sql" />
+    <None Include="7-2 - Architecture Permissions.sql" />
+    <None Include="8-2 - KeyTypes Permissions.sql" />
+    <None Include="5-3 - CloudProvider CRUD.sql" />
+    <None Include="6-3 - CloudProviderSubnet CRUD.sql" />
+    <None Include="7-3 - Architecture CRUD.sql" />
+    <None Include="8-3 - KeyTypes CRUD.sql" />
+    <None Include="3-7 - RFC Audits.sql" />
+    <None Include="4-7 - Protocol Audits.sql" />
+    <None Include="5-7 - CloudProvider Audits.sql" />
+    <None Include="6-7 - CloudProviderSubnet Audits.sql" />
+    <None Include="7-7 - Architecture Audits.sql" />
+    <None Include="8-7 - KeyTypes Audits.sql" />
   </ItemGroup>
   <ItemGroup>
     <SqlCmdVariable Include="Domain">

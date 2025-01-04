@@ -17,8 +17,8 @@ SELECT
 	   c.[Id]
 	  ,l.[LogTimestamp]
 	  ,e.[Value] AS [Event ID]
-	  ,[Rolodex].[IPToString](i.[Value]) AS [Source Address]
-	  ,[Logs].[BinaryToSessionId](s.[Value]) AS [Session ID]
+	  ,[IPAddress].[FromBinary](i.[Value]) AS [Source Address]
+	  ,[SessionId].[FromBinary](s.[Value]) AS [Session ID]
 	  ,m.[Value] AS [Message]
       ,ic.[Value] AS [Command]
   FROM [sans_isc].[Cowrie].[Command] c
@@ -26,7 +26,7 @@ SELECT
   JOIN [Cowrie].[Logs] l ON l.[Id] = c.[Id]
   JOIN [Cowrie].[EventIds] e ON e.[Id] = l.[EventIdID]
   JOIN [IPAddress].[Addresses] i ON i.[Id] = l.[SourceID]
-  JOIN [Cowrie].[Sessions] s ON s.[Id] = l.[SessionID]
+  JOIN [SessionId].[Storage] s ON s.[Id] = l.[SessionID]
   JOIN [Cowrie].[Messages] m ON m.[Id] = l.[MessageID]
 GO
 
@@ -46,8 +46,8 @@ SELECT
 	   c.[Id]
 	  ,l.[LogTimestamp]
 	  ,e.[Value] AS [Event ID]
-	  ,[Rolodex].[IPToString](i.[Value]) AS [Source Address]
-	  ,[Logs].[BinaryToSessionId](s.[Value]) AS [Session ID]
+	  ,[IPAddress].[FromBinary](i.[Value]) AS [Source Address]
+	  ,[SessionId].[FromBinary](s.[Value]) AS [Session ID]
 	  ,m.[Value] AS [Message]
       ,ic.[Value] AS [Command]
   FROM [sans_isc].[Cowrie].[Command] c
@@ -55,7 +55,7 @@ SELECT
   JOIN [Cowrie].[Logs] l ON l.[Id] = c.[Id]
   JOIN [Cowrie].[EventIds] e ON e.[Id] = l.[EventIdID]
   JOIN [IPAddress].[Addresses] i ON i.[Id] = l.[SourceID]
-  JOIN [Cowrie].[Sessions] s ON s.[Id] = l.[SessionID]
+  JOIN [SessionId].[Storage] s ON s.[Id] = l.[SessionID]
   JOIN [Cowrie].[Messages] m ON m.[Id] = l.[MessageID]
   WHERE c.[Input] = 1
 GO
@@ -75,8 +75,8 @@ SELECT
 	   c.[Id]
 	  ,l.[LogTimestamp]
 	  ,e.[Value] AS [Event ID]
-	  ,[Rolodex].[IPToString](i.[Value]) AS [Source Address]
-	  ,[Logs].[BinaryToSessionId](s.[Value]) AS [Session ID]
+	  ,[IPAddress].[FromBinary](i.[Value]) AS [Source Address]
+	  ,[SessionId].[FromBinary](s.[Value]) AS [Session ID]
 	  ,m.[Value] AS [Message]
       ,ic.[Value] AS [Command]
   FROM [sans_isc].[Cowrie].[Command] c
@@ -84,7 +84,7 @@ SELECT
   JOIN [Cowrie].[Logs] l ON l.[Id] = c.[Id]
   JOIN [Cowrie].[EventIds] e ON e.[Id] = l.[EventIdID]
   JOIN [IPAddress].[Addresses] i ON i.[Id] = l.[SourceID]
-  JOIN [Cowrie].[Sessions] s ON s.[Id] = l.[SessionID]
+  JOIN [SessionId].[Storage] s ON s.[Id] = l.[SessionID]
   JOIN [Cowrie].[Messages] m ON m.[Id] = l.[MessageID]
   WHERE c.[Success] = 1
 GO
@@ -105,8 +105,8 @@ SELECT
 	   c.[Id]
 	  ,l.[LogTimestamp]
 	  ,e.[Value] AS [Event ID]
-	  ,[Rolodex].[IPToString](i.[Value]) AS [Source Address]
-	  ,[Logs].[BinaryToSessionId](s.[Value]) AS [Session ID]
+	  ,[IPAddress].[FromBinary](i.[Value]) AS [Source Address]
+	  ,[SessionId].[FromBinary](s.[Value]) AS [Session ID]
 	  ,m.[Value] AS [Message]
       ,ic.[Value] AS [Command]
   FROM [sans_isc].[Cowrie].[Command] c
@@ -114,7 +114,7 @@ SELECT
   JOIN [Cowrie].[Logs] l ON l.[Id] = c.[Id]
   JOIN [Cowrie].[EventIds] e ON e.[Id] = l.[EventIdID]
   JOIN [IPAddress].[Addresses] i ON i.[Id] = l.[SourceID]
-  JOIN [Cowrie].[Sessions] s ON s.[Id] = l.[SessionID]
+  JOIN [SessionId].[Storage] s ON s.[Id] = l.[SessionID]
   JOIN [Cowrie].[Messages] m ON m.[Id] = l.[MessageID]
   WHERE c.[Failed] = 1
 GO

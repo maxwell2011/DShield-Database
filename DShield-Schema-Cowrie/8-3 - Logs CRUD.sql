@@ -28,7 +28,7 @@ BEGIN
 	IF @EventIdID IS NULL
 	SELECT @EventIdID = [Id] FROM [Cowrie].[EventIds] WHERE [Value] = 'UNKNOWN';
 	EXEC [IPAddress].[UpsertIP] @Source, @SourceID OUTPUT;
-	EXEC [Cowrie].[UpsertSessions] @Session, @SessionID OUTPUT;
+	EXEC [SessionId].[UpsertText] @Session, @SessionID OUTPUT;
 	EXEC [Cowrie].[UpsertMessages] @Message, @MessageID OUTPUT;
 	EXEC [Cowrie].[UpsertSensors] @Sensor, @SensorID OUTPUT;
     -- Try to find existing Username

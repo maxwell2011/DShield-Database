@@ -23,7 +23,7 @@ GO
 -- ============================================= 
 ALTER DATABASE AUDIT SPECIFICATION DShield_Database_Activity_Audit_Specification  
 FOR SERVER AUDIT DShield_Activity_Server_Audit  
-    ADD (INSERT, UPDATE, DELETE ON [Reference].[CloudProvider] BY PUBLIC)  
+    ADD (INSERT, UPDATE, DELETE ON [Reference].[CloudProviders] BY PUBLIC)  
     WITH (STATE=ON);   
 GO  
 

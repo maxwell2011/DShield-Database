@@ -29,7 +29,7 @@ AS BEGIN
         AS datetime2(7)
     );
     -- Get or create Source IP
-    EXEC [IPAddresses].[UpsertIP] @Source, @SourceID OUTPUT;
+    EXEC [IPAddress].[UpsertIP] @Source, @SourceID OUTPUT;
     -- Get or create Url
     EXEC [Rolodex].[UpsertUrl] @Url, @UrlID OUTPUT;
     -- Get or create UserAgent

@@ -12,7 +12,7 @@ GO
 -- =============================================
 CREATE TABLE [SessionId].[Storage] (
 	[Id]	INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	[Value]	VARBINARY(MAX) NOT NULL
+	[Value]	VARBINARY(16) NOT NULL
 );
 GO
 -- Index on SessionId to prevent duplicates

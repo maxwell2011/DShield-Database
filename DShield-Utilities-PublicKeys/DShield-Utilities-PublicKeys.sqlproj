@@ -73,13 +73,13 @@
     </SqlCmdVariable>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Drop Objects and Create Schema.sql" />
-    <Build Include="2 - Create Users Accounts Roles.sql" />
+    <None Include="1 - Drop Objects and Create Schema.sql" />
+    <None Include="2 - Create Users Accounts Roles.sql" />
     <Build Include="3-1 - PublicKey Storage.sql" />
-    <Build Include="3-5 - PublicKey Functions.sql" />
-    <Build Include="3-3 - PublicKey CRUD.sql" />
-    <Build Include="3-2 - PublicKey Permissions.sql" />
-    <Build Include="3-7 - PublicKey Audits.sql" />
+    <None Include="3-5 - PublicKey Functions.sql" />
+    <None Include="3-3 - PublicKey CRUD.sql" />
+    <None Include="3-2 - PublicKey Permissions.sql" />
+    <None Include="3-7 - PublicKey Audits.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">

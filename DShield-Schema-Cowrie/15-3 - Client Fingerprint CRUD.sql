@@ -31,8 +31,8 @@ BEGIN
 	DECLARE @TypeID INT
 	EXEC [Cowrie].[UpsertLogs] @LogTimestamp, 'cowrie.client.fingerprint', @Source, @Session, @Message, @Sensor, @LogID OUTPUT;
 	EXEC [Rolodex].[UpsertUsername] @Username, @UsernameID OUTPUT;
-	EXEC [Rolodex].[UpsertFingerprints] @Fingerprint, @FingerprintID OUTPUT;
-	EXEC [Rolodex].[UpsertPublicKeys] @Key, @KeyID OUTPUT;
+	EXEC [Fingerprint].[UpsertText] @Fingerprint, @FingerprintID OUTPUT;
+	EXEC [PublicKey].[UpsertText] @Key, @KeyID OUTPUT;
 	EXEC [Reference].[UpsertKeyTypes] @Type, @TypeID OUTPUT;
 	SELECT @ULogID = [Id]
     FROM [Cowrie].[ClientFingerprint] 

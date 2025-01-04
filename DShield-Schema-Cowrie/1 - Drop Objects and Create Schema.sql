@@ -124,7 +124,7 @@ IF OBJECT_ID('[Cowrie].[UpsertLogsClientVersion]', 'P') IS NOT NULL
 GO
 
 IF OBJECT_ID('[Cowrie].[UpsertLogsSessionParams]', 'P') IS NOT NULL
-    DROP PROCEDURE [Cowrie].[UpsertLogsSessionClosed]
+    DROP PROCEDURE [Cowrie].[UpsertLogsSessionParams]
 GO
 
 IF OBJECT_ID('[Cowrie].[UpsertLogsSessionClosed]', 'P') IS NOT NULL

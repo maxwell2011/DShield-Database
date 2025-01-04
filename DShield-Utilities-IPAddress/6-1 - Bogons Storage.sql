@@ -13,18 +13,8 @@ GO
 
 
 CREATE TABLE [IPAddress].[Bogons] (
-    [Id]            BIGINT NOT NULL,
-    [Value]         VARBINARY(16) NOT NULL,
-    CONSTRAINT FK_IPAddress_Bogons_Storage_Id
-		FOREIGN KEY ([Id]) 
-		REFERENCES [IPAddress].[Storage]([Id])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-    CONSTRAINT FK_IPAddress_Bogons_Storage_Value
-		FOREIGN KEY ([Value]) 
-		REFERENCES [IPAddress].[Storage]([Value])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
+    [Id]            INT IDENTITY(1,1) PRIMARY KEY,
+    [Value]         VARBINARY(16) NOT NULL
 );
 GO
 -- Index on Bogon IP Address to prevent duplicates

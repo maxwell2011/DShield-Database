@@ -33,12 +33,12 @@ CREATE TABLE [Cowrie].[ClientFingerprint] (
 		ON UPDATE CASCADE,
 	CONSTRAINT FK_Cowrie_ClientFingerprint_Fingerprint
 		FOREIGN KEY ([FingerprintID]) 
-		REFERENCES [Rolodex].[Fingerprints]([Id])
+		REFERENCES [Fingerprint].[Storage]([Id])
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	CONSTRAINT FK_Cowrie_ClientFingerprint_Key
 		FOREIGN KEY ([KeyID]) 
-		REFERENCES [Rolodex].[PublicKeys]([Id])
+		REFERENCES [PublicKey].[Storage]([Id])
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	CONSTRAINT FK_Cowrie_ClientFingerprint_Type

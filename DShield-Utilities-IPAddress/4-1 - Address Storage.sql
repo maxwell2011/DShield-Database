@@ -14,18 +14,8 @@ GO
 
 
 CREATE TABLE [IPAddress].[Addresses] (
-    [Id]            BIGINT NOT NULL,
+    [Id]			INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [Value]         VARBINARY(16) NOT NULL
-    CONSTRAINT FK_IPAddress_Addresse_Storage_Id
-		FOREIGN KEY ([Id]) 
-		REFERENCES [IPAddress].[Storage]([Id])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-    CONSTRAINT FK_IPAddress_Addresses_Storage_Value
-		FOREIGN KEY ([Value]) 
-		REFERENCES [IPAddress].[Storage]([Value])
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
 );
 GO
 -- Index on IP Address to prevent duplicates

@@ -9,7 +9,9 @@ GO
 -- Type:		View
 -- Description:
 --  View to Select Subnets and their Owners
+-- FIXME: I made an oopsies with JOIN [Reference].[IPAddresses]
 -- =============================================
+/*
 CREATE VIEW [Reference].[CloudProviderSubnetOwnership] AS
 SELECT
       [IPAddress].[FromBinary](ipa.[Value]) AS [Subnet]
@@ -20,4 +22,5 @@ SELECT
   JOIN [Reference].[CloudProviders] cps ON cps.[Id] = cld.[CloudProviderID]
   JOIN [Reference].[IPAddresses] ipa ON ipa.[Id] = cld.[SubnetID]
 GO
+*/
 

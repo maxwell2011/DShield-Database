@@ -63,6 +63,8 @@ GO
 GRANT REFERENCES, SELECT ON [Reference].[CloudProviderSubnets] TO [ReferenceReader]
 GO
 
+/*
+FIXME: Theres a problem with the view...
 -- =============================================
 -- Title:       Reference - Cloud Provider 
 --                          Subnet Ownership
@@ -128,6 +130,8 @@ GO
 -- =============================================
 GRANT REFERENCES, SELECT ON [Reference].[CloudProviderSubnetOwnership] TO [ReferenceReader]
 GO
+
+*/
 
 -- =============================================
 -- Title:       Reference - CloudProviderSubnets

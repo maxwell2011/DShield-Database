@@ -24,7 +24,7 @@ BEGIN
 	DECLARE @ULogID INT;
 	DECLARE @ClientVersionID INT
 	EXEC [Cowrie].[UpsertLogs] @LogTimestamp, 'cowrie.client.version', @Source, @Session, @Message, @Sensor, @LogID OUTPUT;
-	EXEC [Rolodex].[UpsertSSHClientVersions] @SSHClientVersion, @ClientVersionID OUTPUT;
+	EXEC [Rolodex].[UpsertSSHClientVersion] @SSHClientVersion, @ClientVersionID OUTPUT;
 	SELECT @ULogID = [Id]
     FROM [Cowrie].[ClientVersion] 
     WHERE 

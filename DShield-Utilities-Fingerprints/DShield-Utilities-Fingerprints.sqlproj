@@ -80,12 +80,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="1 - Drop Objects and Create Schema.sql" />
-    <Build Include="2 - Create Users Accounts Roles.sql" />
+    <None Include="1 - Drop Objects and Create Schema.sql" />
+    <None Include="2 - Create Users Accounts Roles.sql" />
     <Build Include="3-1 - Fingerprint Storage.sql" />
-    <Build Include="3-4 - Fingerprint Functions.sql" />
-    <Build Include="3-3 - Fingerprint CRUD.sql" />
-    <Build Include="3-2 - Fingerprint Permissions.sql" />
-    <Build Include="3-7 - Fingerprint Audits.sql" />
+    <None Include="3-4 - Fingerprint Functions.sql" />
+    <None Include="3-3 - Fingerprint CRUD.sql" />
+    <None Include="3-2 - Fingerprint Permissions.sql" />
+    <None Include="3-7 - Fingerprint Audits.sql" />
   </ItemGroup>
 </Project>
