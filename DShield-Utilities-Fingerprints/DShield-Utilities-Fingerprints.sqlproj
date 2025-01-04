@@ -86,5 +86,6 @@
     <Build Include="3-4 - Fingerprint Functions.sql" />
     <Build Include="3-3 - Fingerprint CRUD.sql" />
     <Build Include="3-2 - Fingerprint Permissions.sql" />
+    <Build Include="3-7 - Fingerprint Audits.sql" />
   </ItemGroup>
 </Project>

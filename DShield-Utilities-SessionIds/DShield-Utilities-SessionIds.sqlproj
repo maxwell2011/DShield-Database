@@ -86,5 +86,6 @@
     <Build Include="3-5 - SessionId Functions.sql" />
     <Build Include="3-3 - SessionId CRUD.sql" />
     <Build Include="3-2 - SessionId Permissions.sql" />
+    <Build Include="3-7 - SessionId Audits.sql" />
   </ItemGroup>
 </Project>

@@ -95,6 +95,12 @@
     <Build Include="6-3 - CloudProviderSubnet CRUD.sql" />
     <Build Include="7-3 - Architecture CRUD.sql" />
     <Build Include="8-3 - KeyTypes CRUD.sql" />
+    <Build Include="3-7 - RFC Audits.sql" />
+    <Build Include="4-7 - Protocol Audits.sql" />
+    <Build Include="5-7 - CloudProvider Audits.sql" />
+    <Build Include="6-7 - CloudProviderSubnet Audits.sql" />
+    <Build Include="7-7 - Architecture Audits.sql" />
+    <Build Include="8-7 - KeyTypes Audits.sql" />
   </ItemGroup>
   <ItemGroup>
     <SqlCmdVariable Include="Domain">

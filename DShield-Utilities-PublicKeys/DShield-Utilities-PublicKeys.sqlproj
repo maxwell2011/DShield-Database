@@ -79,6 +79,7 @@
     <Build Include="3-5 - PublicKey Functions.sql" />
     <Build Include="3-3 - PublicKey CRUD.sql" />
     <Build Include="3-2 - PublicKey Permissions.sql" />
+    <Build Include="3-7 - PublicKey Audits.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">

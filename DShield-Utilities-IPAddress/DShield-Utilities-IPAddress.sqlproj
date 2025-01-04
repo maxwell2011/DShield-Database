@@ -86,6 +86,7 @@
     <Build Include="5-5 - Subnets Functions.sql" />
     <Build Include="3-5 - IPAddress Functions.sql" />
     <Build Include="3-4 - IPAddress Views.sql" />
+    <Build Include="3-7 - IPAddress Audits.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DShield-Database\DShield-Database.sqlproj">

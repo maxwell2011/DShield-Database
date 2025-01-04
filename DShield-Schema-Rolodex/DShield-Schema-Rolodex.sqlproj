@@ -124,5 +124,11 @@
     <Build Include="6-3 - URL CRUD.sql" />
     <Build Include="7-3 - SSHClientVersions CRUD.sql" />
     <Build Include="8-3 - Hassh CRUD.sql" />
+    <Build Include="3-7 - UserAgent Audits.sql" />
+    <Build Include="4-7 - Username Audits.sql" />
+    <Build Include="5-7 - Password Audits.sql" />
+    <Build Include="6-7 - URL Audits.sql" />
+    <Build Include="7-7 - SSHClientVersions Audits.sql" />
+    <Build Include="8-7 - Hassh Audits.sql" />
   </ItemGroup>
 </Project>
