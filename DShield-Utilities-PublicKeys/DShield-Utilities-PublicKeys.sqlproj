@@ -80,6 +80,7 @@
     <None Include="3-3 - PublicKey CRUD.sql" />
     <None Include="3-2 - PublicKey Permissions.sql" />
     <None Include="3-7 - PublicKey Audits.sql" />
+    <None Include="install.py" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">

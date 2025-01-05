@@ -131,4 +131,7 @@
     <None Include="7-7 - SSHClientVersions Audits.sql" />
     <None Include="8-7 - Hassh Audits.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="install.py" />
+  </ItemGroup>
 </Project>

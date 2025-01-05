@@ -80,6 +80,7 @@
       <AnsiNulls>ProjectDefault</AnsiNulls>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="install.py" />
   </ItemGroup>
   <ItemGroup>
     <SqlCmdVariable Include="Domain">

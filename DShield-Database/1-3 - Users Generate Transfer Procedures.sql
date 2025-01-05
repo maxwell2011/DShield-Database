@@ -244,3 +244,4 @@ BEGIN'
     DEALLOCATE login_curs
     RETURN 0
 END
+GO

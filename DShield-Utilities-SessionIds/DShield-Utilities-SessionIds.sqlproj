@@ -87,5 +87,6 @@
     <None Include="3-3 - SessionId CRUD.sql" />
     <None Include="3-2 - SessionId Permissions.sql" />
     <None Include="3-7 - SessionId Audits.sql" />
+    <None Include="install.py" />
   </ItemGroup>
 </Project>

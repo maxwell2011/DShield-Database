@@ -101,6 +101,7 @@
     <None Include="6-7 - CloudProviderSubnet Audits.sql" />
     <None Include="7-7 - Architecture Audits.sql" />
     <None Include="8-7 - KeyTypes Audits.sql" />
+    <None Include="install.py" />
   </ItemGroup>
   <ItemGroup>
     <SqlCmdVariable Include="Domain">

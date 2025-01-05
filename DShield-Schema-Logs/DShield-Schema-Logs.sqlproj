@@ -130,5 +130,6 @@
     <None Include="3-4 - Firewall Logs Views.sql" />
     <None Include="4-4 - Honeypot Logs Views.sql" />
     <None Include="5-4 - RawSSH Logs Views.sql" />
+    <None Include="install.py" />
   </ItemGroup>
 </Project>

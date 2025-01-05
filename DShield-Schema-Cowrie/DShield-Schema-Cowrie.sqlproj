@@ -163,6 +163,7 @@
     <None Include="8-3 - Logs CRUD.sql" />
     <None Include="9-3 - Session Connect CRUD.sql" />
     <None Include="13-3 - Client KEX CRUD.sql" />
+    <None Include="install.py" />
   </ItemGroup>
   <ItemGroup>
     <None Include="3-7 - Event IDs Audits.sql" />

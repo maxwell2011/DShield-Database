@@ -87,6 +87,7 @@
     <None Include="3-5 - IPAddress Functions.sql" />
     <None Include="3-4 - IPAddress Views.sql" />
     <None Include="3-7 - IPAddress Audits.sql" />
+    <None Include="install.py" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DShield-Database\DShield-Database.sqlproj">

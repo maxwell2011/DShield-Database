@@ -87,5 +87,6 @@
     <None Include="3-3 - Fingerprint CRUD.sql" />
     <None Include="3-2 - Fingerprint Permissions.sql" />
     <None Include="3-7 - Fingerprint Audits.sql" />
+    <None Include="install.py" />
   </ItemGroup>
 </Project>
